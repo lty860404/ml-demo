@@ -2,6 +2,8 @@
 
 from numpy import *
 import operator
+import matplotlib
+import matplotlib.pyplot as plt
 
 def createDataSet():
 	group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])
@@ -37,3 +39,18 @@ def file2matrix(filename):
 		index += 1
 	return returnMat,classLabelVector
 
+#D:\\MachineLearnWorkSpace\\machinelearninginaction\\Ch02\\datingTestSet2.txt
+def showDemoImg(filename) :
+	datingDataMat,datingLabels = file2matrix(filename)
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	ax.scatter(datingDataMat[:,1], datingDataMat[:,2])
+	plt.show()
+
+# showDemoImg("D:\\MachineLearnWorkSpace\\machinelearninginaction\\Ch02\\datingTestSet2.txt")
+
+def autoNorm(dataSet)
+	minVals = dataSet.min(0)
+	maxVals = dataSet.max(0)
+	ranges = maxVals - minVals
+	normDataSet = zeros()
