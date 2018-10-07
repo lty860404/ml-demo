@@ -79,9 +79,9 @@ def datingClassTest(sourceFilePath,k,hoRatio):
 	errorCount = 0.0
 	for i in range(numTestVecs):
 		classifierResult = classify0(normMat[i,:], normMat[numTestVecs:m,:], datingLabels[numTestVecs:m],k)
-		print "the classifier came back with: %s, the real answer is: %s" % (classifierResult, datingLabels[i])
+		print ("the classifier came back with: %s, the real answer is: %s" % (classifierResult, datingLabels[i]))
 		if(classifierResult != datingLabels[i]): errorCount+=1.0
-	print "error count: %f, test count: %f, error rate: %f" % (errorCount, numTestVecs, (errorCount/float(numTestVecs)))
+	print ("error count: %f, test count: %f, error rate: %f" % (errorCount, numTestVecs, (errorCount/float(numTestVecs))))
 
 def classifyPerson(sourceFilePath):
 	resultList = ['not at all','in small doses','in large doses']
@@ -92,7 +92,7 @@ def classifyPerson(sourceFilePath):
 	normMat, ranges, minVals = autoNorm(datingDataMat)
 	inArr = array([ffMiles, percentTats, iceCream])
 	classifierResult = classify0((inArr - minVals)/ranges, normMat, datingLabels, 3)
-	print "You will probably like this person:", resultList[classifierResult-1]
+	print ("You will probably like this person:", resultList[classifierResult-1])
 
 # classifyPerson("/home/lty/machine-learn/scripts/python-workspace/machinelearninginaction/Ch02/datingTestSet2.txt")
 
@@ -116,10 +116,10 @@ def handWritingClassTest(trainSourceDir, testSourceDir, rownum, colnum, k):
 		classNumStr = int(fileStr.split('_')[0])
 		vectorUnderTest = img2vector('%s/%s'%(testSourceDir,fileNameStr), rownum, colnum)
 		classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, k)
-		print "the classifier came back with: %d, the real answer is: %d"%(int(classifierResult), classNumStr)
+		print ("the classifier came back with: %d, the real answer is: %d"%(int(classifierResult), classNumStr))
 		if (classifierResult != classNumStr): errorCount += 1.0
-	print "\nerror count: %d total test count:%d" % (errorCount,mTest)
-	print "\nthe total error rate is: %f"%(errorCount/float(mTest))
+	print ("\nerror count: %d total test count:%d" % (errorCount,mTest))
+	print ("\nthe total error rate is: %f"%(errorCount/float(mTest)))
 
 # handWritingClassTest("/home/lty/machine-learn/scripts/python-workspace/machinelearninginaction/Ch02/tmp/trainingDigits"
 # 	,"/home/lty/machine-learn/scripts/python-workspace/machinelearninginaction/Ch02/tmp/testDigits"
