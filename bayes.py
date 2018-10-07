@@ -1,3 +1,5 @@
+from numpy import *
+
 def loadDataSet():
 	postingList = [['my','dog','has','flea','problems','help','please']
 					,['maybe','not','take','him','to','dog','park','stupid']
@@ -22,4 +24,28 @@ def setOfWords2Vec(vocabList, inputSet):
 		else:
 			print("the word:%s is not in my vocabulary!"%word)
 	return returnVec
+
+def trainNB0(trainMatrix,trainCategory):
+	numTrainDocs = len(trainMatrix)
+	numWords = len(trainMatrix[0])
+	pAbusive = sum(trainCategory)/float(numTrainDocs)
+	p0Num = ones(numWords)
+	p1Num = ones(numWords)
+	p0Denom = 2.0
+	p1Denom = 2.0
+	for i in range(numTrainDocs):
+		if trainCategory[i] == 1:
+			p1Num += trainMatrix[i]
+			p1Denom += sum(trainMatrix[i])
+		else:
+			p0Num += trainMatrix[i]
+			p0Denom += sum(trainMatrix[i])
+	p1Vect = log(p1Num/p1Denom)
+	p0Vect = log(p0Num/p0Denom)
+	return p0Vect,p1Vect,pAbusive
+
+def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
+	p1 = sum(vec2Classify*p1Vec) + log(pClass1)
+	p0 = sum(vec2Classify*p0Vec) + log(1.0 - pClass1)
+	
 
