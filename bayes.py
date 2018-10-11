@@ -117,7 +117,7 @@ def calcMostFreq(vocabList,fullText):
 	return sortedFreq[:30]
 
 #http://www.nasa.gov/rss/dyn/image_of_the_day.rss
-#https://sports.yahoo.com/nba/teams/hou/rss.xml
+#http://feeds.washingtonpost.com/rss/homepage
 
 def localWords(feed1,feed0):
 	import feedparser
@@ -155,6 +155,19 @@ def localWords(feed1,feed0):
 	print 'the error rate:',float(errorCount)/len(testSet)
 	return vocabList,p0V,p1V
 
-
-
+def getTopWords(ny,sf):
+	import operator
+	vocabList,p0V,p1V = localWords(ny,sf)
+	topNY = [];topSF = []
+	for i in range(len(p0V)):
+		if p0V[i] > -6.0: topSF.append((vocabList[i], p0V[i]))
+		if p1V[i] > -6.0: topNY.append((vocabList[i], p1V[i]))
+	sortedSF = sorted(topSF, key = lambda pair:pair[1], reverse=True)
+	print "SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**"
+	for item in sortedSF:
+		print item[0]
+	sotredNY = sorted(topNY, key = lambda pair:pair[1], reverse=True)
+	print "NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**"	
+	for item in sotredNY:
+		print item[0]
 
