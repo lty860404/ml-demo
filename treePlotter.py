@@ -9,7 +9,8 @@ def plotNode(nodeTxt, centerPt, parentPt, nodeType):
 		, xytext = centerPt, textcoords = 'axes fraction'
 		, va = 'center', ha = 'center', bbox = nodeType, arrowprops = arrow_args)
 
-def createPlot():
+
+def createDemoPlot():
 	fig = plt.figure(1, facecolor = 'white')
 	fig.clf()
 	createPlot.ax1 = plt.subplot(111, frameon = False)

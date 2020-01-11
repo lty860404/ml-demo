@@ -8,7 +8,7 @@ def loadDataSet(basePath):
 	fr = open(path)
 	for line in fr.readlines():
 		lineArr = line.strip().split()
-		dataMat.append([1.0,float(lineArr[0]),float(lineArr[1])])
+		dataMat.append([1.0, float(lineArr[0]),float(lineArr[1])])
 		labelMat.append(int(lineArr[2]))
 	return dataMat,labelMat
 
@@ -105,12 +105,22 @@ def colicTest(basePath):
 		if int(classifyVector(array(lineArr), trainWeights)) != int(currLine[21]):
 			errorCount += 1
 	errorRate = (float(errorCount)/numTestVec)
-	print "the error rate of this test is:%f" % errorRate
+	print("the error rate of this test is:%f" % errorRate)
 	return errorRate
 
 def multiTest(basePath):
 	numTests = 10; errorSum = 0.0
 	for k in range(numTests):
 		errorSum += colicTest(basePath)
-	print "after %d iterations the average error rate is:%f" % (numTests, errorSum/float(numTests))
+	print("after %d iterations the average error rate is:%f" % (numTests, errorSum/float(numTests)))
+
+if __name__ == '__main__':
+	dataSet, labelSet = loadDataSet('../machinelearninginaction/Ch05')
+	print(dataSet)
+	for i in range(len(dataSet)):
+		print("{}---{}".format(dataSet[i], labelSet[i]))
+	labelMat = mat(labelSet).transpose()
+	dataMat = mat(dataSet)
+	m, n = shape(dataMat)
+	print("{},{}".format(m, n))
 
